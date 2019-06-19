@@ -28,7 +28,7 @@ else
 endif
 
 .PHONY: all
-all: deque.o
+all: selftest
 deque.o: deque.c deque.h deque_iterator.h
 	$(COMPILE.c) -o $@ $<
 %.o: %.c %.h
@@ -38,3 +38,11 @@ deque.o: deque.c deque.h deque_iterator.h
 .PHONY: clean
 clean:
 	$(RM) *.o
+	$(RM) deque-example
+.PHONY: selftest
+selftest: deque-example
+deque-example: deque.o deque-example.o
+	$(LINK.o) -o $@ $^ $(LIBS)
+vpath %.c tests
+deque-example.o: deque-example.c deque.h deque_iterator.h
+	$(COMPILE.c) -o $@ $<

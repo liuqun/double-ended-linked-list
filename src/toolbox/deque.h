@@ -7,6 +7,7 @@
 extern "C" {
 #endif /* __cplusplus */
 
+typedef void *data_ptr_t;
 typedef struct _deque_item_t deque_item_t;
 
 typedef struct _deque_t {
@@ -29,8 +30,8 @@ void deque_push_front(deque_t *deq, /*const*/ void *data);
 void deque_push_back(deque_t *deq, /*const*/ void *data);
 void deque_pop_front(deque_t *deq);
 void deque_pop_back(deque_t *deq);
-void * deque_peek_front(const deque_t *deq);
-void * deque_peek_back(const deque_t *deq);
+data_ptr_t deque_peek_front(const deque_t *deq);
+data_ptr_t deque_peek_back(const deque_t *deq);
 
 int deque_is_empty(const deque_t *deq);
 

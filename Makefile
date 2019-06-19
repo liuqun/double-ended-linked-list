@@ -29,7 +29,7 @@ endif
 
 .PHONY: all
 all: deque.o
-deque.o: deque.c deque.h
+deque.o: deque.c deque.h deque_iterator.h
 	$(COMPILE.c) -o $@ $<
 %.o: %.c %.h
 	$(COMPILE.c) -o $@ $<

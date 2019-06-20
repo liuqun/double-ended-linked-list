@@ -149,3 +149,13 @@ data_ptr_t deque_peek_back(const deque_t *deq)
 	assert(deq);
 	return (data_ptr_t) deq->tail->data;
 }
+
+void deque_do_something_for_each_node_in_deque(const deque_t *deq, void *extra_arg, operator_fn_t fn)
+{
+	deque_item_t *node;
+
+	// 对 deque 从头到尾遍历一圈, 对每个节点执行一次由应用层定义的具体fn()操作
+	for (node = deq->head; node; node = node->next) {
+		fn(node->data, extra_arg);
+	}
+}

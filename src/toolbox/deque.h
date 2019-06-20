@@ -42,6 +42,12 @@ int deque_is_empty(const deque_t *deq);
     int is_empty_deque(const deque_t *deq);
 #endif
 
+typedef void (*operator_fn_t)(void *node_data, void *extra_arg);
+void deque_do_something_for_each_node_in_deque(
+	const deque_t *deq, /// 双向链表对象指针
+	void *extra_arg, /// 由应用层编写对应函数 fn() 的附加参数
+	operator_fn_t fn /// 需要执行的函数名, 函数本身由应用层负责编写
+	);
 
 #ifdef __cplusplus
 }; /* extern "C" */

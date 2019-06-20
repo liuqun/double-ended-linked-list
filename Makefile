@@ -51,4 +51,7 @@ deque_basic_example: deque_basic_example.o deque.o
 	$(LINK.o) -o $@ $^ $(LIBS)
 deque_iterator_example: deque_iterator_example.o $(OBJECT_LIST)
 	$(LINK.o) -o $@ $^ $(LIBS)
+selftest: deque_more_example
+deque_more_example: deque_more_example.o deque.o
+	$(LINK.o) -o $@ $^ $(LIBS)
 vpath %.c tests

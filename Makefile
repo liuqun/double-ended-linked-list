@@ -27,10 +27,16 @@ else
  CPPFLAGS += -DPACKAGE_BUILD_MODE="release"
 endif
 
+# 手动维护下列源代码文件清单
+HEADER_LIST += deque.h
+SOURCE_LIST += deque.c
+HEADER_LIST += deque_iterator.h
+SOURCE_LIST += deque_iterator.c
+OBJECT_LIST = $(patsubst %.c,%.o,$(SOURCE_LIST))
+
 .PHONY: all
-all: selftest
-deque.o: deque.c deque.h deque_iterator.h
-	$(COMPILE.c) -o $@ $<
+# 顶层依赖关系
+all: $(OBJECT_LIST) selftest
 %.o: %.c %.h
 	$(COMPILE.c) -o $@ $<
 %.o: %.c
@@ -41,8 +47,8 @@ clean:
 	$(RM) deque-example
 .PHONY: selftest
 selftest: deque-example
-deque-example: deque.o deque-example.o
+deque-example: deque-example.o $(OBJECT_LIST)
 	$(LINK.o) -o $@ $^ $(LIBS)
 vpath %.c tests
-deque-example.o: deque-example.c deque.h deque_iterator.h
+deque-example.o: deque-example.c
 	$(COMPILE.c) -o $@ $<

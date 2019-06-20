@@ -12,8 +12,11 @@ typedef struct _deque_item_t deque_item_t;
 
 typedef struct _deque_t {
 	int cnt;
-	deque_item_t *head;
-	deque_item_t *tail;
+	struct _deque_item_t {
+		void *data;
+		deque_item_t *prev;
+		deque_item_t *next;
+	} *head, *tail;
 } deque_t;
 
 deque_t * deque_new(void);

@@ -2,11 +2,6 @@
 #include <stdlib.h>
 #include "toolbox/deque.h"
 
-struct _deque_item_t {
-	void *data;
-	deque_item_t *prev;
-	deque_item_t *next;
-};
 
 deque_t * deque_new(void)
 {

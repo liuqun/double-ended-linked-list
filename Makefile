@@ -44,11 +44,9 @@ all: $(OBJECT_LIST) selftest
 .PHONY: clean
 clean:
 	$(RM) *.o
-	$(RM) deque-example
+	$(RM) deque_iterator_example
 .PHONY: selftest
-selftest: deque-example
-deque-example: deque-example.o $(OBJECT_LIST)
+selftest: deque_iterator_example
+deque_iterator_example: deque_iterator_example.o $(OBJECT_LIST)
 	$(LINK.o) -o $@ $^ $(LIBS)
 vpath %.c tests
-deque-example.o: deque-example.c
-	$(COMPILE.c) -o $@ $<
